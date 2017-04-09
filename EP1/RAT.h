@@ -29,4 +29,3 @@ void RATshow(Rational r);
 Rational RATadd(Rational r1, Rational r2);
 Rational RATmul(Rational r1, Rational r2);
 Rational RATdiv(Rational r1, Rational r2);
-unsigned long factorial(unsigned long number);

@@ -21,20 +21,24 @@
 #include "RAT.h"
 #include <stdio.h>
 
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   int n; int i;
   Rational e = RATinit(1,1);
+  Rational parcela = e;
   printf("\nEste programa realiza uma aproximacao racional para 'e' (numero de Euler) utilizando a expansao da serie de Taylor.\n");
   printf("\nInsira o numero de aproximacoes n: ");
-  scanf("%d", &n);
+
+  if( scanf("%d", &n) != 1) return 0;
 
   for(i = 1; i <= n; i++)
   {
     RATshow(e);
-    e =  RATadd(e, RATinit(1, factorial(i)));
+    parcela = RATmul(parcela, RATinit(1, i));
+    e = RATadd(e, parcela);
   }
 
-  printf("\n");
+printf("\n\n");
+return 1;
 
 }
