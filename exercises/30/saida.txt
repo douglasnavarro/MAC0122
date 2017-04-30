@@ -1,0 +1,16 @@
+Saida de Josephus(1000, 2) = 977 
+Saida de Josephus(10000, 2) = 3617 
+Saida de Josephus(100000, 2) = 68929 
+Saida de Josephus(1000000, 2) = 951425 
+Saida de Josephus(1000, 3) = 604 
+Saida de Josephus(10000, 3) = 2692 
+Saida de Josephus(100000, 3) = 92620 
+Saida de Josephus(1000000, 3) = 637798 
+Saida de Josephus(1000, 5) = 763 
+Saida de Josephus(10000, 5) = 646 
+Saida de Josephus(100000, 5) = 40333 
+Saida de Josephus(1000000, 5) = 718997 
+Saida de Josephus(1000, 10) = 63 
+Saida de Josephus(10000, 10) = 9143 
+Saida de Josephus(100000, 10) = 77328 
+Saida de Josephus(1000000, 10) = 630538 
