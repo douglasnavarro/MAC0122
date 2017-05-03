@@ -1,4 +1,5 @@
 #include "STACK.h"
+#include <stdlib.h>
 
 void STACKinit(int N)
 {
