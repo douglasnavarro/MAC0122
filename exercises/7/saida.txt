@@ -1,0 +1,69 @@
+﻿(i)   ./cliente E*A*S*Y* retorna EASY
+
+(ii)  ./cliente EASY**** retorna YSAE
+
+(iii) ./cliente EA*S*Y** retorna ASYE
+
+(iv)  é impossível desempilhar esta sequencia porque a sequencia E A S Y impossibilita desempilhar o E antes do S.
+
+Programa utilizado:
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "STACK.h"
+
+cliente.c
+-----------
+int main(int argc, char * argv[])
+{
+  char *a = argv[1];
+  int i = 0;
+  int N = strlen(a);
+  STACKinit(N);
+  while(i < N)
+  {
+    if(a[i] == '*') printf("%c", STACKpop());
+    else STACKpush(a[i]);
+    i++;
+  }
+  return 0;
+}
+
+STACK.h
+----------------
+void STACKinit(int);
+int STACKempty();
+void STACKpush(int);
+int STACKpop();
+int *_Pilha;
+int _topo;
+
+STACK.c
+-----------
+#include <stdlib.h>
+#include "STACK.h"
+
+void STACKinit(int N)
+{
+  _Pilha = malloc(N*sizeof(int));
+  _topo = 0;
+}
+
+int STACKempty()
+{
+  return(_topo == 0);
+}
+
+void STACKpush(int x)
+{
+  _Pilha[_topo] = x;
+  _topo++;
+}
+
+int STACKpop()
+{
+  int x = _Pilha[_topo -1];
+  _topo--;
+  return x;
+}
