@@ -2,6 +2,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+void imprime_relatorio(int n, int m, int ** corredores)
+{
+  printf("\nO valor lido de n foi: %d\n", n);
+  printf("O valor lido de m foi: %d\n", m);
+  printf("Corredores:\n");
+  int i;
+  for(i = 0; i < n - 1; i++)
+  {
+    printf("%d %d\n", corredores[i][0], corredores[i][1]);
+  }
+  printf("\n");
+}
+
 void adiciona_item_fim(Item * atual, int x)
 {
   while( atual->next != NULL )
@@ -21,7 +34,23 @@ void inicializa_sala(Room * sala)
   inicializa_lista(sala->adj);
 }
 
-void inicializa_lista(Item * i) {
+void inicializa_lista(Item * i)
+{
   i->next = NULL;
   i->id = 0;
+}
+
+void imprime_tabela(Room ** salas, int n)
+{
+  int i;
+  for(i = 0; i < n; i++)
+  {
+    printf("(%d)->", i);
+    Item * topo = salas[i]->adj->next;
+    while (topo != NULL) {
+      printf("%d->", topo->id);
+      topo = topo->next;
+    }
+    printf("(NULL)\r\n");
+  }
 }
