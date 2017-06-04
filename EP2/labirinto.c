@@ -30,6 +30,7 @@ void adiciona_item_fim(Item * atual, int x)
 
 void inicializa_sala(Room * sala)
 {
+  sala->visitada = 0;
   sala->adj = malloc(sizeof(Item));
   inicializa_lista(sala->adj);
 }
@@ -53,4 +54,28 @@ void imprime_tabela(Room ** salas, int n)
     }
     printf("(NULL)\r\n");
   }
+}
+
+void STACKinit(int N)
+{
+  _Pilha = malloc(N*sizeof(int));
+  _topo = 0;
+}
+
+int STACKempty()
+{
+  return(_topo == 0);
+}
+
+void STACKpush(int x)
+{
+  _Pilha[_topo] = x;
+  _topo++;
+}
+
+int STACKpop()
+{
+  int x = _Pilha[_topo-1];
+  _topo--;
+  return x;
 }

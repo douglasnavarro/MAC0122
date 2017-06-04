@@ -42,7 +42,11 @@ int main(int argc, char* argv[])
     fscanf(arq, "%d %d", &corredores[i][0], &corredores[i][1]);
   }
 
+  /*print de debug
+
   imprime_relatorio(n, m, corredores);
+
+  */
 
   /*declara vetor de ponteiros para Room e aloca memoria para vetor*/
   Room ** salas;
@@ -54,7 +58,7 @@ int main(int argc, char* argv[])
     salas[i] = (Room *) malloc(sizeof(Room));
     inicializa_sala(salas[i]);
   }
-  
+
   /*percorre corredores e salva na lista de cada sala*/
   for(i = 0; i < n-1; i++)
   {
@@ -62,7 +66,32 @@ int main(int argc, char* argv[])
     adiciona_item_fim(salas[corredores[i][1]]->adj, corredores[i][0]);
   }
 
+  /*prints de debug
+
   printf("Tabela de adjacencias:\n");
   imprime_tabela(salas, n);
 
+  */
+
+  /*Busca em profundidade*/
+  STACKinit(n);
+  int atual = 0;
+  STACKpush(atual);
+  Item * adjacentes;
+  while(STACKempty() == 0)
+  {
+    atual = STACKpop();
+    printf("%d ", atual);
+    if(atual == 9) break;
+    if(salas[atual]->visitada == 0)
+    {
+      salas[atual]->visitada = 1;
+      adjacentes = salas[atual]->adj->next;
+      while(adjacentes != NULL)
+      {
+        STACKpush(adjacentes->id);
+        adjacentes = adjacentes->next;
+      }
+    }
+  }
 }
