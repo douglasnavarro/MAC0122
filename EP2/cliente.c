@@ -78,15 +78,15 @@ int main(int argc, char* argv[])
   int atual = 0;
   STACKpush(atual);
   Item * adjacentes;
-  while(STACKempty() == 0)
+  while(atual != n-1)
   {
     atual = STACKpop();
     printf("%d ", atual);
-    if(atual == 9) break;
     if(salas[atual]->visitada == 0)
     {
       salas[atual]->visitada = 1;
       adjacentes = salas[atual]->adj->next;
+      /* empilha todas salas adjacentes*/
       while(adjacentes != NULL)
       {
         STACKpush(adjacentes->id);
