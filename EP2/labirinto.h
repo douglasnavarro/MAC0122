@@ -10,4 +10,5 @@ Item* adj;
 };
 
 void adiciona_item_fim(Item *, int);
-void inicializa_sala(Room);
+void inicializa_sala(Room *);
+void inicializa_lista(Item * i);

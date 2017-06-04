@@ -1,20 +1,27 @@
 #include "labirinto.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-void adiciona_item_fim(Item * topo, int x)
+void adiciona_item_fim(Item * atual, int x)
 {
-  Item * atual = topo;
-  while( atual->next != NULL)
+  while( atual->next != NULL )
   {
     atual = atual->next;
   }
   /*atual aponta para o ultimo nó da lista*/
-  atual->next = malloc(sizeof(Item));
-  atual->next->id   = x;
-  atual->next->next = NULL;
+  Item * newI = malloc(sizeof(Item));
+  atual->next = newI;
+  newI->id   = x;
+  newI->next = NULL;
 }
 
-void inicializa_sala(Room sala)
+void inicializa_sala(Room * sala)
 {
-  sala.adj = NULL;
+  sala->adj = malloc(sizeof(Item));
+  inicializa_lista(sala->adj);
+}
+
+void inicializa_lista(Item * i) {
+  i->next = NULL;
+  i->id = 0;
 }

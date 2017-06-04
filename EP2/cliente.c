@@ -1,5 +1,6 @@
 #include "labirinto.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char* argv[])
 {
@@ -7,6 +8,7 @@ int main(int argc, char* argv[])
   int m; /*corredores*/
   int n; /*salas*/
   int i; /*para iterar*/
+
 
   if(argc != 2) /* não especificou o arquivo na chamada */
   {
@@ -25,10 +27,20 @@ int main(int argc, char* argv[])
   fscanf(arq, "%d", &n); /*lê numero de salas da primeira linha do arquivo*/
   fscanf(arq, "%d", &m); /*lê numero de corredores da segunda linha do arquivo*/
 
-  int corredores[n][2]; /*para armazenar os pares {sala, sala}*/
-  Room salas[n];
-  for(i = 0; i< n-1; i++)
+  int ** corredores;
+  corredores = malloc( n*sizeof( int * ) );
+
+  for(i = 0; i< n; i++)
   {
+    corredores[i] = malloc(2*sizeof(int));
+  }
+
+
+  Room ** salas;
+  salas = malloc( n*sizeof(Room *) );
+  for(i = 0; i< n; i++)
+  {
+    salas[i] = (Room *) malloc(sizeof(Room));
     inicializa_sala(salas[i]);
   }
 
@@ -37,11 +49,27 @@ int main(int argc, char* argv[])
     fscanf(arq, "%d %d", &corredores[i][0], &corredores[i][1]);
   }
 
+  for(i = 0; i < n-1; i++)
+  {
+    printf("%d %d\r\n", corredores[i][0], corredores[i][1]);
+  }
+
   for(i = 0; i < n-1; i++) /*percorre corredores*/
   {
-    printf("%d %d\n", corredores[i][0], corredores[i][1]);
-    adiciona_item_fim(salas[corredores[i][0]].adj, corredores[i][1]);
-    //adiciona_item_fim(salas[corredores[i][1]].adj, corredores[i][0]);
+    adiciona_item_fim(salas[corredores[i][0]]->adj, corredores[i][1]);
   }
+
+  for(i = 0; i < n-1; i++)
+  {
+    printf("(%d)->", i);
+    Item * topo = salas[i]->adj->next;
+    while (topo != NULL) {
+      printf("%d->", topo->id);
+      topo = topo->next;
+    }
+    printf("(NULL)\r\n");
+  }
+
+
 
 }
