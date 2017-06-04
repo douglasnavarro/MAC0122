@@ -1,0 +1,13 @@
+typedef struct item Item;
+struct item{
+int id;
+Item* next;
+};
+
+typedef struct room Room;
+struct room{
+Item* adj;
+};
+
+void adiciona_item_fim(Item *, int);
+void inicializa_sala(Room);
