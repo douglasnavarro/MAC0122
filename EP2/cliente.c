@@ -8,6 +8,11 @@ int main(int argc, char* argv[])
   int m; /*corredores*/
   int n; /*salas*/
   int i; /*para iterar*/
+  int ** corredores; /*matiz de int*/
+  Room ** salas; /*vetor de Room*/
+  int atual; /*é utilizado no algoritmo de busca*/
+  Item * adjacentes; /*este ponteiro tambem*/
+  int fail; /*armazena retorno de fscanf só pra nao disparar warning do gcc*/
 
   if(argc != 2) /* não especificou o arquivo na chamada */
   {
@@ -23,11 +28,12 @@ int main(int argc, char* argv[])
     return 0;
   }
 
-  fscanf(arq, "%d", &n); /*lê numero de salas da primeira linha do arquivo*/
-  fscanf(arq, "%d", &m); /*lê numero de corredores da segunda linha do arquivo*/
+  fail = fscanf(arq, "%d", &n); /*lê numero de salas da primeira linha do arquivo*/
+  if(!fail) return 0;
+  fail = fscanf(arq, "%d", &m); /*lê numero de corredores da segunda linha do arquivo*/
+  if(!fail) return 0;
 
-  /*declara matriz e aloca linhas*/
-  int ** corredores;
+  /*aloca linhas*/
   corredores = malloc( n*sizeof( int * ) );
 
   /*aloca colunas*/
@@ -39,17 +45,14 @@ int main(int argc, char* argv[])
   /*le corredores do arquivo e armazena na matriz*/
   for(i = 0; i < n-1; i++)
   {
-    fscanf(arq, "%d %d", &corredores[i][0], &corredores[i][1]);
+    fail = fscanf(arq, "%d %d", &corredores[i][0], &corredores[i][1]);
   }
 
   /*print de debug
-
   imprime_relatorio(n, m, corredores);
-
   */
 
-  /*declara vetor de ponteiros para Room e aloca memoria para vetor*/
-  Room ** salas;
+  /*aloca memoria para vetor*/
   salas = malloc( n*sizeof(Room *) );
 
   /*aloca memoria para cada sala e as inicializa*/
@@ -67,17 +70,14 @@ int main(int argc, char* argv[])
   }
 
   /*prints de debug
-
   printf("Tabela de adjacencias:\n");
   imprime_tabela(salas, n);
-
   */
 
   /*Busca em profundidade*/
   STACKinit(n);
-  int atual = 0;
+  atual = 0;
   STACKpush(atual);
-  Item * adjacentes;
   while(atual != n-1)
   {
     atual = STACKpop();
@@ -94,4 +94,5 @@ int main(int argc, char* argv[])
       }
     }
   }
+  return 1;
 }

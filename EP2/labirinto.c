@@ -4,10 +4,10 @@
 
 void imprime_relatorio(int n, int m, int ** corredores)
 {
+  int i;
   printf("\nO valor lido de n foi: %d\n", n);
   printf("O valor lido de m foi: %d\n", m);
   printf("Corredores:\n");
-  int i;
   for(i = 0; i < n - 1; i++)
   {
     printf("%d %d\n", corredores[i][0], corredores[i][1]);
@@ -17,12 +17,13 @@ void imprime_relatorio(int n, int m, int ** corredores)
 
 void adiciona_item_fim(Item * atual, int x)
 {
+  Item * newI;
   while( atual->next != NULL )
   {
     atual = atual->next;
   }
   /*atual aponta para o ultimo nó da lista*/
-  Item * newI = malloc(sizeof(Item));
+  newI = malloc(sizeof(Item));
   atual->next = newI;
   newI->id   = x;
   newI->next = NULL;
@@ -44,10 +45,11 @@ void inicializa_lista(Item * i)
 void imprime_tabela(Room ** salas, int n)
 {
   int i;
+  Item * topo;
   for(i = 0; i < n; i++)
   {
     printf("(%d)->", i);
-    Item * topo = salas[i]->adj->next;
+    topo = salas[i]->adj->next;
     while (topo != NULL) {
       printf("%d->", topo->id);
       topo = topo->next;
