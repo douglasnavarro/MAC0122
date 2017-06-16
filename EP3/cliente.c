@@ -1,4 +1,5 @@
-#include<stdio.h>
+#include <stdio.h>
+#include "sistema.h"
 #define MAX 100
 /* TODO: inclua seus arquivos .h*/
 
@@ -60,25 +61,35 @@ void leString(char nome[]){
 }
 
 void prompt(){
+
   int operacao;
   int tamanho;
   int imprimir;
   char nome[MAX];
-
-  /* TODO: Adicione variaveis que achar necessario*/
-  
+  Node * atual;
+  Node * temp;
   imprimir = 1;
-  /* TODO: crie um diretorio raiz e use-o como diretorio atual*/
+  atual = cria_diretorio("ROOT");
 
   do{
-    imprimeDiretorioAtual("diretorio atual"); /* TODO: diretorio atual*/
+
+    imprimeDiretorioAtual(atual->nome);
     imprimeOperacoes(imprimir);
     leInt(&operacao);
+
     switch (operacao){
       case 1:
         imprimeNomeDiretorio(imprimir);
         leString(nome);
-        /* TODO: chame aqui sua função de criar diretorios*/
+
+        /*o diretorio esta vazio*/
+        if (atual->filho == NULL) {
+          printf("criado diretorio filho!\n");
+          atual->filho = cria_diretorio(nome);
+        }
+
+        /*o diretorio ja tem subdiretorios*/
+
         printf("\n  Diretorio %s criado!\n", nome);
         break;
       case 2:
@@ -86,7 +97,21 @@ void prompt(){
         leString(nome);
         imprimeTamanho(imprimir);
         leInt(&tamanho);
-        /* TODO: chame aqui sua função de criar arquivos*/
+
+        /*o diretorio esta vazio*/
+        if (atual->filho == NULL) {
+          atual->filho = cria_arquivo(nome, tamanho);
+        }
+
+        /*o diretorio ja tem subdiretorios*/
+        else{
+          temp = atual->filho;
+          while (temp->irmao != NULL) {
+            temp = temp->irmao;
+          }
+          temp->irmao = cria_arquivo(nome, tamanho);
+        }
+
         printf("\n  Arquivo %s criado! (%d KB)\n", nome, tamanho);
         break;
       case 3:
@@ -101,7 +126,7 @@ void prompt(){
         printf("\n  Mudou para o diretorio raiz!\n");
         break;
       case 5:
-        /* TODO: chame aqui sua função de imprimir todos os filhos*/
+        imprime_filhos(atual);
         break;
       case 6:
         printf("\n  Hierarquia do diretorio atual:\n\n");
