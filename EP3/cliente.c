@@ -1,7 +1,4 @@
-#include <stdio.h>
 #include "sistema.h"
-#define MAX 100
-/* TODO: inclua seus arquivos .h*/
 
 void imprimeDiretorioAtual(char nome[]){
   printf("\n====================================================\n");
@@ -82,13 +79,19 @@ void prompt(){
         imprimeNomeDiretorio(imprimir);
         leString(nome);
 
-        /*o diretorio esta vazio*/
+        /*o diretorio esta vazio ?*/
         if (atual->filho == NULL) {
-          printf("criado diretorio filho!\n");
           atual->filho = cria_diretorio(nome);
         }
 
         /*o diretorio ja tem subdiretorios*/
+        else{
+          temp = atual->filho;
+          while (temp->irmao != NULL) {
+            temp = temp->irmao;
+          }
+          temp->irmao = cria_diretorio(nome);
+        }
 
         printf("\n  Diretorio %s criado!\n", nome);
         break;
@@ -98,12 +101,12 @@ void prompt(){
         imprimeTamanho(imprimir);
         leInt(&tamanho);
 
-        /*o diretorio esta vazio*/
+        /*o diretorio esta vazio ?*/
         if (atual->filho == NULL) {
           atual->filho = cria_arquivo(nome, tamanho);
         }
 
-        /*o diretorio ja tem subdiretorios*/
+        /*o diretorio ja tem arquivos*/
         else{
           temp = atual->filho;
           while (temp->irmao != NULL) {

@@ -1,3 +1,10 @@
+#ifndef _SISTEMAH_
+#define _SISTEMAH_
+#define MAX 100
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 typedef struct node Node;
 struct node{
   Node* irmao;
@@ -10,3 +17,5 @@ struct node{
 Node * cria_diretorio(char*);
 Node * cria_arquivo(char*, int);
 void   imprime_filhos(Node*);
+
+#endif
