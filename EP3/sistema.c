@@ -90,3 +90,13 @@ void imprime_descendentes(Node* atual, int espacos)
   else
     imprime_descendentes(atual->filho, espacos + 2);
 }
+
+int calcula_tamanho(Node* atual)
+{
+  if(atual == NULL)
+    return 0;
+  else
+  {
+    return atual->tamanho + calcula_tamanho(atual->filho) + calcula_tamanho(atual->irmao);
+  }
+}

@@ -140,7 +140,7 @@ void prompt(){
         imprime_descendentes(atual->filho, 4);
         break;
       case 7:
-        /* TODO: chame aqui sua função de calcular o tamanho do diretorio atual*/
+        printf("\n  Tamanho do diretorio atual: %d KB\n ", calcula_tamanho(atual->filho));
         break;
       case 8:
         /* TODO: chame aqui sua funcao que apaga os elementos na subarvore do diretorio atual*/

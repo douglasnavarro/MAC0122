@@ -19,5 +19,6 @@ Node * cria_arquivo(char*, int);
 void   imprime_filhos(Node*);
 Node * muda_diretorio(int, Node*);
 void imprime_descendentes(Node*, int);
+int calcula_tamanho(Node*);
 
 #endif
