@@ -17,5 +17,6 @@ struct node{
 Node * cria_diretorio(char*);
 Node * cria_arquivo(char*, int);
 void   imprime_filhos(Node*);
+Node * muda_diretorio(int, Node*);
 
 #endif

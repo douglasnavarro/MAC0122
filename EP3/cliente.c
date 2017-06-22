@@ -118,11 +118,11 @@ void prompt(){
         printf("\n  Arquivo %s criado! (%d KB)\n", nome, tamanho);
         break;
       case 3:
-        /* TODO: chame aqui sua função de imprimir todos os filhos (operacao 5)*/
+        imprime_filhos(atual);
         imprimeMudaDiretorio(imprimir);
         leInt(&tamanho);
-        /* TODO: chame aqui sua função de atualizar o diretorio atual*/
-        printf("\n  Mudou para o diretorio %s!\n", "diretorio atual"); /* TODO: nome do diretorio atual*/
+        atual = muda_diretorio(tamanho, atual);
+        printf("\n  Mudou para o diretorio %s!\n", atual->nome);
         break;
       case 4:
         /* TODO: atualize o diretorio atual para a raiz*/

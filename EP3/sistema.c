@@ -30,7 +30,7 @@ void imprime_filhos(Node* atual){
   printf("\n  Arquivos em %s:\n", atual->nome);
 
   if(atual->filho == NULL)
-    printf("\n O diretorio esta vazio!\n");
+    printf("\n  Diretorio vazio!\n");
   else{
     temp = atual->filho;
     if(temp->eh_arquivo == 0)
@@ -46,5 +46,20 @@ void imprime_filhos(Node* atual){
       temp = temp->irmao;
       i++;
     }
+  }
+}
+
+Node * muda_diretorio(int indice, Node* atual)
+{
+  int i = 0;
+  Node* temp;
+  temp = atual->filho;
+  if(i == indice)
+    return temp;
+  while (temp->irmao != NULL) {
+    temp = temp->irmao;
+    i++;
+    if(i == indice)
+      return temp;
   }
 }
