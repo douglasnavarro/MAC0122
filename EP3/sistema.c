@@ -24,10 +24,10 @@ Node * cria_arquivo(char* nome, int tamanho)
   return arquivo;
 }
 
-void imprime_filhos(Node* atual){
+void imprime_filhos(Node* atual)
+{
   int i = 0;
   Node* temp;
-  printf("\n  Arquivos em %s:\n", atual->nome);
 
   if(atual->filho == NULL)
     printf("\n  Diretorio vazio!\n");
@@ -62,4 +62,31 @@ Node * muda_diretorio(int indice, Node* atual)
     if(i == indice)
       return temp;
   }
+}
+
+void imprime_descendentes(Node* atual, int espacos)
+{
+  if(atual == NULL)
+    return;
+
+  if(atual->eh_arquivo == 0)
+  {
+    printf("%*c", espacos, ' ');
+    printf("%s\n", atual->nome);
+  }
+
+  else
+  {
+    printf("%*c", espacos, ' ');
+    printf("%s (%d KB)\n", atual->nome, atual->tamanho);
+  }
+
+  if(atual->irmao != NULL)
+  {
+    imprime_descendentes(atual->filho, espacos + 2);
+    imprime_descendentes(atual->irmao, espacos);
+  }
+
+  else
+    imprime_descendentes(atual->filho, espacos + 2);
 }

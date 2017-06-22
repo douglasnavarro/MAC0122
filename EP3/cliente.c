@@ -65,8 +65,10 @@ void prompt(){
   char nome[MAX];
   Node * atual;
   Node * temp;
+  Node * raiz;
   imprimir = 1;
-  atual = cria_diretorio("ROOT");
+  raiz = cria_diretorio("ROOT");
+  atual = raiz;
 
   do{
 
@@ -125,15 +127,17 @@ void prompt(){
         printf("\n  Mudou para o diretorio %s!\n", atual->nome);
         break;
       case 4:
-        /* TODO: atualize o diretorio atual para a raiz*/
+        atual = raiz;
         printf("\n  Mudou para o diretorio raiz!\n");
         break;
       case 5:
+        printf("\n  Arquivos em %s:\n", atual->nome);
         imprime_filhos(atual);
         break;
       case 6:
         printf("\n  Hierarquia do diretorio atual:\n\n");
-        /* TODO: chame aqui sua função de imprimir todos os descendentes*/
+        printf("  %s\n", atual->nome);
+        imprime_descendentes(atual->filho, 4);
         break;
       case 7:
         /* TODO: chame aqui sua função de calcular o tamanho do diretorio atual*/
