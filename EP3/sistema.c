@@ -62,6 +62,7 @@ Node * muda_diretorio(int indice, Node* atual)
     if(i == indice)
       return temp;
   }
+  return temp;
 }
 
 void imprime_descendentes(Node* atual, int espacos)

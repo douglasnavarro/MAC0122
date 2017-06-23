@@ -152,14 +152,13 @@ void prompt(){
         printf("\n  Variavel imprimir modificada para %d!\n", imprimir);
         break;
       case 0:
-        /* TODO: nao faz nada. Apenas espera sair do programa*/
         break;
       default:
         printf("\n  Operacao invalida (%d)!\n", operacao);
         break;
     }
   } while(operacao != 0);
-  apaga_elementos(raiz);
+  free(raiz);
   raiz = NULL;
 }
 
