@@ -143,7 +143,8 @@ void prompt(){
         printf("\n  Tamanho do diretorio atual: %d KB\n ", calcula_tamanho(atual->filho));
         break;
       case 8:
-        /* TODO: chame aqui sua funcao que apaga os elementos na subarvore do diretorio atual*/
+        apaga_elementos(atual->filho);
+        atual->filho = NULL;
         printf("\n  Todos os itens do diretorio atual foram removidos!\n");
         break;
       case 9:
@@ -158,7 +159,8 @@ void prompt(){
         break;
     }
   } while(operacao != 0);
-  /* TODO: desaloque aqui os nos restantes antes de encerrar o programa*/
+  apaga_elementos(raiz);
+  raiz = NULL;
 }
 
 int main(){

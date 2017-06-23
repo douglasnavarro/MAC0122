@@ -100,3 +100,18 @@ int calcula_tamanho(Node* atual)
     return atual->tamanho + calcula_tamanho(atual->filho) + calcula_tamanho(atual->irmao);
   }
 }
+
+void apaga_elementos(Node* atual)
+{
+  if(atual == NULL)
+    return;
+
+  free(atual);
+  if(atual->irmao != NULL)
+  {
+    apaga_elementos(atual->filho);
+    apaga_elementos(atual->irmao);
+  }
+  else
+    apaga_elementos(atual->filho);
+}
